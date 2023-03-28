@@ -10,6 +10,7 @@ employees as e
 join employee_salary as es on e.id = es.employee_id
 join salary on es.salary_id = salary.id
 where monthly_salary < 2000;
+
 -- 3. Вывести все зарплатные позиции, но работник по ним не назначен. (ЗП есть, но не понятно кто её получает.)
 select e.employee_name , s.monthly_salary from 
 employee_salary as es  
@@ -20,9 +21,10 @@ where e.employee_name  is null;
 -- 4. Вывести все зарплатные позиции  меньше 2000 но работник по ним не назначен. (ЗП есть, но не понятно кто её получает.)
 select e.employee_name , s.monthly_salary from 
 employee_salary as es  
-join employees as e  on es.employee_id  = e.id
-join salary as s  on es.salary_id = s.id 
-where s.monthly_salary < 2000;
+left join employees as e  on es.employee_id  = e.id
+left join salary as s  on es.salary_id = s.id 
+where e.employee_name  is null and
+s.monthly_salary < 2000 ;
 
 -- 5. Найти всех работников кому не начислена ЗП.
 select e.employee_name , s.monthly_salary from 
@@ -41,7 +43,7 @@ select e.employee_name, r.role_name from
 roles_employee as re 
 join employees as e on re.employee_id = e.id 
 join roles as r on re.role_id = r.id  
-where r.role_name like '%Java%';
+where r.role_name like '%Java %';
 -- 8. Вывести имена и должность только Python разработчиков.
 select e.employee_name, r.role_name from
 roles_employee as re 
@@ -97,7 +99,7 @@ join employees as e on es.employee_id = e.id
 join salary as s on es.salary_id = s.id 
 join roles_employee as re on e.id  = re.employee_id  
 join roles as r on re.role_id = r.id 
-where r.role_name like '%Java%';
+where r.role_name like '%Java %';
 -- 16. Вывести зарплаты Python разработчиков
 select e.employee_name, r.role_name, s.monthly_salary  from 
 employee_salary as es
@@ -129,7 +131,7 @@ join employees as e on es.employee_id = e.id
 join salary as s on es.salary_id = s.id 
 join roles_employee as re on e.id  = re.employee_id  
 join roles as r on re.role_id = r.id 
-where r.role_name like '%Senior Java%';
+where r.role_name like '%Senior Java %';
 -- 20. Вывести зарплаты Junior QA инженеров
 select e.employee_name, r.role_name, s.monthly_salary  from 
 employee_salary as es
