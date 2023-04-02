@@ -140,7 +140,9 @@ CASE
     ELSE "Количество до 30"
 END AS QuantityText
 FROM OrderDetails; `
+
 Вернет:
+
 ` 
 OrderID	Quantity	QuantityText
 10248	    12	   Количество до 30
@@ -155,7 +157,8 @@ OrderID	Quantity	QuantityText
 10251	    15	   Количество до 30
 10251	    20	   Количество до 30
 10252	    40	   Количество больше чем 30 `
-##Логический порядок обработки инструкции SELECT:
+
+## Логический порядок обработки инструкции SELECT:
 
 FROM
 
